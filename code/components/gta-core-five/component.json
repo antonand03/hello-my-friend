@@ -1,0 +1,12 @@
+{
+	"name": "gta:core:five",
+	"version": "0.1.0",
+	"dependencies": [
+		"fx[2]",
+		"rage:allocator:five",
+		"rage:nutsnbolts:five",
+		"rage:scripting:five",
+		"vendor:minhook"
+	],
+	"provides": []
+}

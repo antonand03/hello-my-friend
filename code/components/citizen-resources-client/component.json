@@ -1,0 +1,14 @@
+{
+	"name": "citizen:resources:client",
+	"version": "0.1.0",
+	"dependencies": [
+		"fx[2]",
+		"citizen:resources:core",
+		"http-client",
+		"vendor:leveldb",
+		"vendor:msgpack-c",
+		"citizen:scripting:core",
+		"scripting"
+	],
+	"provides": []
+}

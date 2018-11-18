@@ -1,0 +1,55 @@
+# temporary placeholder that'll just invoke C:\f\build.cmd
+buildscript:
+  stage: build
+  script:
+    - "powershell -ExecutionPolicy Unrestricted code\\tools\\ci\\build.ps1 -DontUpload $true"
+  artifacts:
+    paths:
+      - caches/diff/
+      - caches/caches.xml
+      - caches/CitizenFX.exe.xz
+      - caches/version.txt
+    expire_in: 1 week
+  cache:
+    untracked: true
+    paths:
+      - code/shared/citversion.h
+      - caches/
+      - vendor/
+      - code/build/
+
+deploy_specific:
+  stage: deploy
+  dependencies:
+    - buildscript
+  script:
+    - "powershell -ExecutionPolicy Unrestricted code\\tools\\ci\\build.ps1 -DontBuild $true"
+  environment:
+    name: specific/$CI_BUILD_REF_NAME
+  only:
+    - branches
+  except:
+    - master
+
+deploy_canary:
+  stage: deploy
+  dependencies:
+    - buildscript
+  script:
+    - "powershell -ExecutionPolicy Unrestricted code\\tools\\ci\\build.ps1 -DontBuild $true"
+  environment:
+    name: canary
+  only:
+    - master
+
+deploy_prod:
+  stage: deploy
+  dependencies:
+    - buildscript
+  script:
+    - "powershell -ExecutionPolicy Unrestricted code\\tools\\ci\\build.ps1 -DontBuild $true"
+  environment:
+    name: production
+  when: manual
+  only:
+    - master

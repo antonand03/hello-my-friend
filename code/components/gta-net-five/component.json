@@ -1,0 +1,12 @@
+{
+	"name": "gta:net:five",
+	"version": "0.1.0",
+	"dependencies": [
+		"fx[2]",
+		"net",
+		"rage:nutsnbolts:five",
+		"citizen:resources:core",
+		"vendor:msgpack-c"
+	],
+	"provides": []
+}
